@@ -15,15 +15,40 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
 
+let postHandle = [];
 
+app.get("/", (req,res)=>{
+  res.render("home",{
+    startingContent: homeStartingContent,
+    postHandle
+  })
+})
 
+app.get("/about", (req,res)=>{
+  res.render("about",{
+    aboutContent: aboutContent,
+  })
+})
 
+app.get("/contact", (req,res)=>{
+  res.render("contact",{
+    contactContent: contactContent,
+  });
+})
 
+app.get("/compose", (req,res)=>{
+  res.render("compose");
+})
 
+app.post("/compose",(req,res)=>{
+const posts = {
+  title: req.body.postTitle,
+  content: req.body.postBody
+}
 
-
-
-
+postHandle.push(posts);
+res.redirect("/");
+})
 
 
 
