@@ -5,7 +5,9 @@
 <% postHandle.forEach(startingContent=>{ %>
 
 <h2><%= startingContent.title %></h2>
-<p><%= startingContent.content %></p>
+<p><%= startingContent.content.substring(0,100) + "..."  %>
+    <a href="/post/<%=startingContent.title%>">Read More</a>
+</p>
 
 <% }); %> 
 
